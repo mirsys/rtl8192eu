@@ -63,7 +63,10 @@ u32 GlobalDebugLevel = _drv_err_;
 void dump_drv_version(void *sel)
 {
 	DBG_871X_SEL_NL(sel, "%s %s\n", DRV_NAME, DRIVERVERSION);
-	DBG_871X_SEL_NL(sel, "build time: %s %s\n", __DATE__, __TIME__);
+	/* Fix error build on 4.2.8-300.fc23.x86_64
+	* /root/src/rtl8192eu.orig/core/rtw_debug.c:66:64: error: macro "__DATE__" might prevent reproducible builds [-Werror=date-time]
+	* DBG_871X_SEL_NL(sel, "build time: %s %s\n", __DATE__, __TIME__);
+	*/
 }
 
 void dump_log_level(void *sel)
